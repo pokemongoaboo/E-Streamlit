@@ -43,7 +43,7 @@ st.title("Image Creator for Family & LINE Notify to the group")
 # 用戶輸入
 prompt = st.text_input("請輸入圖片描述(Please Input Picture Description)：")
 
-if st.button("生成圖片(Generate Pics)"):
+if st.button("生成圖片(Generate Picture)"):
     if prompt:
         with st.spinner("正在生成圖片(Generating)..."):
             image_url = generate_image(prompt)
@@ -57,21 +57,21 @@ if "current_image" in st.session_state:
     st.image(st.session_state["current_image"], caption="生成的圖片(Picture Generated)", use_column_width=True)
     
     # 添加發送到LINE的按鈕
-    if st.button("發送到LINE"):
-        with st.spinner("正在發送到LINE..."):
+    if st.button("發送到LINE(Line Notify to Family Group)"):
+        with st.spinner("正在發送到LINE(Notifing)..."):
             send_line_notify(f"新生成的圖片\n描述: {prompt}", st.session_state["current_image"])
-            st.success("圖片已成功發送到LINE！")
+            st.success("圖片已成功發送到LINE(Success)！")
 
     # 添加重新生成的按鈕
-    if st.button("重新生成(Re-Generating"):
+    if st.button("重新生成(Re-Generating)"):
         st.session_state.pop("current_image", None)
         st.experimental_rerun()
 
 # 添加說明
 st.markdown("""
 ### 使用說明：
-1. 在文本框中輸入你想要生成的圖片描述。
-2. 點擊"生成圖片"按鈕來創建圖片。
-3. 如果你不滿意生成的圖片，可以點擊"重新生成"按鈕。
-4. 當你對圖片滿意時，點擊"發送到LINE"按鈕將圖片發送到你的LINE。
+1. 在文本框中輸入你想要生成的圖片描述(Input Picture Descriptions)。
+2. 點擊"生成圖片"按鈕來創建圖片(Click the Generate Picture Button)。
+3. 如果你不滿意生成的圖片，可以點擊"重新生成"按鈕(You can Re-Generate the picture)。
+4. 當你對圖片滿意時，點擊"發送到LINE"按鈕將圖片發送到你的LINE(If satisified, you could click the button of Line Notify to Family Group)。
 """)
