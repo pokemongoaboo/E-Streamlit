@@ -69,7 +69,7 @@ if "current_image" in st.session_state:
 
 # 添加說明
 st.markdown("""
-### 使用說明：
+### 使用說明(Usage)：
 1. 在文本框中輸入你想要生成的圖片描述(Input Picture Descriptions)。
 2. 點擊"生成圖片"按鈕來創建圖片(Click the Generate Picture Button)。
 3. 如果你不滿意生成的圖片，可以點擊"重新生成"按鈕(You can Re-Generate the picture)。
