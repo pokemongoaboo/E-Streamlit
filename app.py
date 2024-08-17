@@ -4,7 +4,7 @@ from PIL import Image
 from io import BytesIO
 
 # 設置頁面配置
-st.set_page_config(page_title="DALL-E 圖像生成器", layout="wide")
+st.set_page_config(page_title="Image Creator for Family", layout="wide")
 
 # OpenAI API 設置
 openai_api_key = st.secrets["OPENAI_API_KEY"]
@@ -38,23 +38,23 @@ def send_line_notify(message, image_url):
     requests.post(line_notify_api, headers=headers, data=data)
 
 # Streamlit UI
-st.title("DALL-E 圖像生成器 & LINE Notify 發送器")
+st.title("Image Creator for Family & LINE Notify to the group")
 
 # 用戶輸入
-prompt = st.text_input("請輸入圖片描述：")
+prompt = st.text_input("請輸入圖片描述(Please Input Picture Description)：")
 
-if st.button("生成圖片"):
+if st.button("生成圖片(Generate Pics)"):
     if prompt:
-        with st.spinner("正在生成圖片..."):
+        with st.spinner("正在生成圖片(Generating)..."):
             image_url = generate_image(prompt)
             st.session_state["current_image"] = image_url
-            st.success("圖片生成成功！")
+            st.success("圖片生成成功(Successs)！")
     else:
-        st.warning("請輸入圖片描述。")
+        st.warning("請輸入圖片描述(Please Input Picture Description)。")
 
 # 顯示生成的圖片
 if "current_image" in st.session_state:
-    st.image(st.session_state["current_image"], caption="生成的圖片", use_column_width=True)
+    st.image(st.session_state["current_image"], caption="生成的圖片(Picture Generated)", use_column_width=True)
     
     # 添加發送到LINE的按鈕
     if st.button("發送到LINE"):
@@ -63,7 +63,7 @@ if "current_image" in st.session_state:
             st.success("圖片已成功發送到LINE！")
 
     # 添加重新生成的按鈕
-    if st.button("重新生成"):
+    if st.button("重新生成(Re-Generating"):
         st.session_state.pop("current_image", None)
         st.experimental_rerun()
 
